@@ -6,12 +6,13 @@ public class GUI {
 	JFrame kunde, koch;  	
 	JPanel kochPanel, kundePanel, kundePanelMitte;
 	ImageIcon pizzaSymbol;
-	Buttons buttons = new Buttons();
+	Buttons buttons;
 	
 	public GUI () {
+		
 		 kunde = new JFrame();
 		 koch = new JFrame();
-		
+		 buttons = new Buttons(kunde);
 		 // TODO
 		 pizzaSymbol = new ImageIcon("C:/Users/Nado/workspace/Pizzaservice/src/resources/pizza.png");
 		 
@@ -21,7 +22,7 @@ public class GUI {
 		 koch.pack();
 		 kunde.pack();
 		 
-		 koch.setVisible(true);
+		// koch.setVisible(true);
 		 kunde.setVisible(true);
 		 
 	}
@@ -36,7 +37,6 @@ public class GUI {
 		 koch.setLayout(new BorderLayout());
 		 
 		 
-		 koch.getContentPane().add(PanelKoch(), BorderLayout.PAGE_END);
 		
 	}
 	
@@ -46,48 +46,50 @@ public class GUI {
 				 kunde.setTitle("Kunde");
 				 // Setze die Groesse des Fensters
 				 kunde.setPreferredSize(new Dimension(670,600));
-				
+				 kunde.setResizable(false);
 				 kunde.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				 kunde.getContentPane().setBackground(Color.RED);
 				 //System.out.println( new File("C:/Users/Nado/workspace/Pizzaservice/src/resources/hallo.jpg").exists());
 				 //Hier ist wichtig, natürlich den richtigen Pfad anzugeben. + dateiformat //am bestem my myclass suchen + dateiname :)
 				
 				 kunde.setIconImage(pizzaSymbol.getImage());
-				 kunde.setLayout(new BorderLayout());
-				 kunde.getContentPane().add(PanelKundeOben(), BorderLayout.PAGE_START);
-				 kunde.getContentPane().add(PanelKundeMitte(), BorderLayout.CENTER);
+				 kunde.setLayout(null);
+				 PanelKundeOben(kunde);
+//				 kunde.setLayout(new BorderLayout());
+//				 kunde.getContentPane().add(PanelKundeOben(), BorderLayout.PAGE_START);
+//				 kunde.getContentPane().add(PanelKundeMitte(), BorderLayout.CENTER);
 		//		 PanelKundeUnten();
 	}
 	
-	private JPanel PanelKundeOben(){
-		kundePanel = new JPanel( new BorderLayout(0,20));
-	//	JPanel obenPanel = new JPanel(new FlowLayout());
-		kundePanel.setBackground(new Color(150,220,0));
+	private void PanelKundeOben(JFrame kunde){
+		Font standart = new Font(null,Font.BOLD,15);
+		JLabel ueberschrift = new JLabel("Pizza Service");
+		JLabel geschmack = new JLabel("Sorten:");
+		JLabel groesse = new JLabel("Groesse:");
+		JLabel adresse = new JLabel("Adresse:");
 		
-		JLabel bestellen = new JLabel("Pizza Bestellen");
-		bestellen.setFont(new Font("Hallo",Font.BOLD, 20));
-		bestellen.setHorizontalAlignment(JLabel.CENTER);
-	
-		kundePanel.add(bestellen, BorderLayout.PAGE_START);
+		ueberschrift.setFont(new Font(null,Font.BOLD,30));
+		ueberschrift.setBounds(230,10,200,30);
+		geschmack.setBounds(200,70,100,30);
+		geschmack.setFont(standart);
+		groesse.setFont(new Font(null,Font.BOLD,14));
+		groesse.setBounds(187,90,100,30);
+		kunde.add(ueberschrift);
+		kunde.add(geschmack);
+		kunde.add(groesse);
+		buttons.pizzaGeschmack(kunde);
+		buttons.addBestellButton(kunde);
+		buttons.pizzaSize(kunde);
+		buttons.addTextFieldKunde(kunde);
+		buttons.extraToppings();
 		
-		buttons.pizzaSize(kundePanel);
-		kunde.add(buttons.addBestellButton());
-		kunde.add(buttons.addToppingButton());
-//		PanelKundeUnten();
-//		Component [] haha = kunde.getComponents();
-//		for(int i = 0; i< haha.length; i++){
-//			System.out.println(haha.toString());
-//			System.out.println(haha.getClass());
-//			System.out.println(haha[i] instanceof JPanel);
-//		}
-		return kundePanel;
 	}
 	
-	private JPanel PanelKundeMitte(){
-		kundePanelMitte = new JPanel( new BorderLayout(0,20));
-		
-		buttons.pizzaGeschmack(kundePanelMitte);
-		return kundePanelMitte;	
+	private void PanelKundeMitte(){
+//		kundePanelMitte = new JPanel( new BorderLayout(0,20));
+//		
+//		buttons.pizzaGeschmack(kundePanelMitte);
+//		return kundePanelMitte;	
 		
 	}
 	private void PanelKundeUnten(){
@@ -101,21 +103,8 @@ public class GUI {
 		
 		
 	}
-	private JPanel PanelKoch(){
-		kochPanel = new JPanel( new BorderLayout());
-		kochPanel.setBackground(new Color(150,220,0));
-		
-		JLabel uno = new JLabel(pizzaSymbol);
-		
-		JLabel dos = new JLabel(pizzaSymbol);
-		// dos.setHorizontalAlignmeanyfacfacout.CENTER);
-		
-		
-		kochPanel.add(new JLabel("lolol"), BorderLayout.PAGE_END);
-		
-		
-		return kochPanel;
-		
+	private void PanelKoch(){
+	
 
 	
 	
