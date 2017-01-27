@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+@author Nadime B.
+*/
 public class GUI {
 	JFrame kunde, koch;  	
 	JPanel kochPanel, kundePanel, kundePanelMitte;
@@ -55,6 +58,7 @@ public class GUI {
 				 kunde.setIconImage(pizzaSymbol.getImage());
 				 kunde.setLayout(null);
 				 PanelKundeOben(kunde);
+				 
 //				 kunde.setLayout(new BorderLayout());
 //				 kunde.getContentPane().add(PanelKundeOben(), BorderLayout.PAGE_START);
 //				 kunde.getContentPane().add(PanelKundeMitte(), BorderLayout.CENTER);
@@ -82,6 +86,7 @@ public class GUI {
 		buttons.pizzaSize(kunde);
 		buttons.addTextFieldKunde(kunde);
 		buttons.extraToppings();
+		buttons.addAbholButton();
 		
 	}
 	
@@ -93,14 +98,14 @@ public class GUI {
 		
 	}
 	private void PanelKundeUnten(){
-		JTextField adresse = new JTextField(20);
-		JLabel adresseLabel = new JLabel("Adresse");
-		
-		adresse.setBounds(240, 200, 200, 20);
-		adresseLabel.setBounds(190,200,200,20);
-		kunde.add(adresseLabel);
-		kunde.add(adresse);
-		
+//		JTextField adresse = new JTextField(20);
+//		JLabel adresseLabel = new JLabel("Adresse");
+//		
+//		adresse.setBounds(240, 200, 200, 20);
+//		adresseLabel.setBounds(190,200,200,20);
+//		kunde.add(adresseLabel);
+//		kunde.add(adresse);
+//		
 		
 	}
 	private void PanelKoch(){
@@ -109,6 +114,6 @@ public class GUI {
 	
 	
 	}
-
+	
 }
 

@@ -19,11 +19,16 @@ public class BListener implements ActionListener, ChangeListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
+		/**Diese IF-Verzweigung dient der Groessenauswahl
+		*fuegt ausserdem auch den richtigen schieberegel entsprechend
+		*der ausgeweahlten groesse hinzu.
+		*
+		*
+		*/
 		if(e.getActionCommand().equals("Mittel")){
 			buttons.creatHalfHalf();
 			buttons.addSlider(3);
-			
-			
 		}
 		else if( e.getActionCommand().equals("Gross")){
 			buttons.addSlider(5);
@@ -37,7 +42,7 @@ public class BListener implements ActionListener, ChangeListener {
 			
 		}
 		
-		
+		//Diese IF-Verzweigung dient den extra toppings:
 		if(e.getActionCommand().equals("Loeschen")){
 			buttons.deleteAuswahl();
 		}
@@ -49,10 +54,18 @@ public class BListener implements ActionListener, ChangeListener {
 		else if(e.getActionCommand().equals("Loeschen T")){
 			buttons.loescheToppings();
 			kunde.repaint();
+		//	System.out.println(buttons.getStringName());
+		}
+		
+		
+		//Falls Bestellung abholen Button gedrueckt wird
+		if(e.getActionCommand().equals("Bestellung abholen?")){
+		//	System.out.println("nmm");
 		}
 		
 	}
 	@Override
+	//Listener fuer den Slicer 
 	public void stateChanged(ChangeEvent a) {
 		//TODO CHeck Pizzasize und Topping	
 		JSlider source = (JSlider)a.getSource();

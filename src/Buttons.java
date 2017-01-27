@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
 public class Buttons   {
 	private JLabel halfHalf, anzahl;
 	private int tAnzahl= 0;
@@ -16,6 +17,7 @@ public class Buttons   {
 	private JSlider toppings;
 	private JRadioButton margherita, thunfisch, salami;
 	private JTextField adresse, telefonnummer, name;
+	private JToggleButton abholen;
 	public Buttons (JFrame kunde){
 		this.kunde = kunde;
 		buttonListener = new BListener(this,kunde);
@@ -107,6 +109,7 @@ public class Buttons   {
 	//ADDET AUCH DEN TOPPING BUTTON
 	public void addBestellButton(JFrame kunde) {
 		JToggleButton bestellButton = new JToggleButton("Bestellen");
+		bestellButton.setToolTipText("Falls Sie bestellen moechten, bitte vorher Button bestaetigen");
 		bestellButton.setBounds(500, 20, 100, 50);
 		bestellButton.setForeground(Color.black);
 		bestellButton.setBackground(Color.yellow);
@@ -128,6 +131,7 @@ public class Buttons   {
 		Name.setBounds(240,475,100,70);
 		Adresse.setBounds(240,500,100,70);
 		Telefonnummer.setBounds(240,525,100,70);
+		//TODO Textfield listener einbauen
 		adresse = new JTextField();
 		telefonnummer = new JTextField();
 		name = new JTextField();
@@ -230,6 +234,14 @@ public class Buttons   {
 		
 	}
 	
+	public void addAbholButton(){
+		abholen = new JToggleButton("Bestellung abholen?");
+		abholen.setBounds(60,520, 150, 30);
+		abholen.setBackground(Color.yellow);
+		abholen.addActionListener(buttonListener);
+		abholen.setToolTipText("Falls Bestellung abholen, bitte Button bestaetigen");
+		kunde.add(abholen);
+	}
 	public void erhoeheToppings(){
 		tAnzahl ++;
 		anzahl.setText(Integer.toString(tAnzahl));
@@ -238,5 +250,17 @@ public class Buttons   {
 		anzahl.setText("0");
 		tAnzahl = 0;
 	}
+	public String getStringAdresse(){
+		
+		return adresse.getText();
+	}
 	
+	public String getStringName(){
+		
+		return name.getText();
+	}
+	public String getStringTelefon(){
+	
+	return telefonnummer.getText();
+	}
 }
