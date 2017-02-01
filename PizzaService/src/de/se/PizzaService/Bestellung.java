@@ -10,5 +10,25 @@ package de.se.PizzaService;
  * @author Malte
  */
 public class Bestellung {
-    
+	private int id;
+	private Kunde kunde;
+	private boolean liefern;
+	private String lieferadr;
+	private ArrayList<Produkt> bestellliste = new ArrayList<Produkt>();
+	private String bestellzeit;
+	private Bestellstatus bestellstatus;
+	private boolean verspaetet;
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 }
