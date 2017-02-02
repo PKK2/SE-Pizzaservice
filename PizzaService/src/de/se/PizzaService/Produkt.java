@@ -1,46 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.se.PizzaService;
 
-/**
- *
- * @author Malte
- */
-public class Produkt implements IProduktMitarbeiter {
-	private int id;
-	private String name;
-	private int preis;
-	private Rezept rezept;
+import java.io.Serializable;
 
-	public String getName() {
-		return name;
-	}
+public class Produkt implements Serializable{
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private int id;
+    private String name = "";
+    private double preis = 0;
 
-	public int getPreis() {
-		return preis;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPreis(int preis) {
-		this.preis = preis;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public double getPreis() {
+        return preis;
+    }
 
-	public Rezept getRezept() {
-		return rezept;
-	}
+    public void setPreis(double preis) {
+        this.preis = preis;
+    }
+    
+    public int getId() {
+        return id;
+    }
 
-	public void setRezept(Rezept rezept) {
-		this.rezept = rezept;
-	}
-
-	public int getId() {
-		return id;
-	}
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }

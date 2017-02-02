@@ -30,7 +30,9 @@ public class DataFactory implements Serializable, IDataFactory{
 
     @Override
     public void addProdukt(Produkt produkt) {
-        produktMap.put(getNewProduktId(), produkt);
+        maxProduktId += 1;
+        produkt.setId(maxProduktId);
+        produktMap.put(maxProduktId, produkt);
     }
 
     @Override
@@ -55,7 +57,9 @@ public class DataFactory implements Serializable, IDataFactory{
 
     @Override
     public void addBestellung(Bestellung bestellung) {
-        bestellMap.put(getNewBestellId(), bestellung);
+        maxBestellId += 1;
+        bestellung.setId(maxBestellId);
+        bestellMap.put(maxBestellId, bestellung);
     }
 
     @Override
@@ -66,15 +70,5 @@ public class DataFactory implements Serializable, IDataFactory{
     @Override
     public void deleteBestellung(int id) {
         bestellMap.remove(id);
-    }
-
-    private Integer getNewProduktId() {
-        maxProduktId += 1;
-        return maxProduktId;
-    }
-    
-    private Integer getNewBestellId() {
-        maxBestellId += 1;
-        return maxBestellId;
     }
 }
