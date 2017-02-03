@@ -89,7 +89,7 @@ public class PizzaService {
         }
 
         for (Produkt p : dataFactory.getAllProdukte()) {
-            System.out.println("Pizzanamw: " + p.getName() + " Preis: " + p.getPreis());
+            System.out.println("Pizzaname: " + p.getName() + " Preis: " + p.getPreis());
         }
 
         //TODO application Logic, that uses variable dataFactory via IDataFactory
