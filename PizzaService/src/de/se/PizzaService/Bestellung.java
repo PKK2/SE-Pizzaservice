@@ -21,6 +21,21 @@ public class Bestellung implements IBestellungKunde, IBestellungKoch, Serializab
         this.datafactory = dataFactory;
     }
     
+    public Bestellung(IDataFactory dataFactory, boolean liefern, String lieferadr, Date bestellzeit){
+        this.datafactory = dataFactory;
+        this.liefern = liefern;
+        this.lieferadr = lieferadr;
+        this.bestellzeit = bestellzeit;
+    }
+    
+    public Bestellung(IDataFactory dataFactory, boolean liefern, String lieferadr, Date bestellzeit, List<BestellProdukt> bestellList){
+        this.datafactory = dataFactory;
+        this.liefern = liefern;
+        this.lieferadr = lieferadr;
+        this.bestellzeit = bestellzeit;
+        this.bestellList = bestellList;
+    }
+    
     public enum Bestellstatus{
     NEU, BACKEND, INZUSTELLUNG, ABGESCHLOSSEN, ABGEBROCHEN 
     };
