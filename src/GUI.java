@@ -10,12 +10,13 @@ public class GUI {
 	JPanel kochPanel, kundePanel, kundePanelMitte;
 	ImageIcon pizzaSymbol;
 	Buttons buttons;
-	
+	KochButtons kochbuttons;
 	public GUI () {
 		
 		 kunde = new JFrame();
 		 koch = new JFrame();
 		 buttons = new Buttons(kunde);
+		 kochbuttons = new KochButtons(koch);
 		 // TODO
 		 pizzaSymbol = new ImageIcon("C:/Users/Nado/workspace/Pizzaservice/src/resources/pizza.png");
 		 
@@ -25,21 +26,22 @@ public class GUI {
 		 koch.pack();
 		 kunde.pack();
 		 
-		// koch.setVisible(true);
+		 koch.setVisible(true);
 		 kunde.setVisible(true);
 		 
 	}
 	private void createKochFrame(){
 		 koch.setTitle("Koch");
-		 koch.setPreferredSize(new Dimension(670,700));
-		
+		 koch.setPreferredSize(new Dimension(670,600));
+		 koch.getContentPane().setBackground(Color.RED);
 		 koch.setLocation(670, 0);
 		 
 		 koch.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 koch.setIconImage(pizzaSymbol.getImage());
 		 koch.setLayout(new BorderLayout());
-		 
-		 
+	//	 koch.setResizable(false);
+		 koch.setLayout(null);
+		 PanelKoch();
 		
 	}
 	
@@ -57,15 +59,11 @@ public class GUI {
 				
 				 kunde.setIconImage(pizzaSymbol.getImage());
 				 kunde.setLayout(null);
-				 PanelKundeOben(kunde);
+				 PanelKunde();
 				 
-//				 kunde.setLayout(new BorderLayout());
-//				 kunde.getContentPane().add(PanelKundeOben(), BorderLayout.PAGE_START);
-//				 kunde.getContentPane().add(PanelKundeMitte(), BorderLayout.CENTER);
-		//		 PanelKundeUnten();
 	}
 	
-	private void PanelKundeOben(JFrame kunde){
+	private void PanelKunde(){
 		Font standart = new Font(null,Font.BOLD,15);
 		JLabel ueberschrift = new JLabel("Pizza Service");
 		JLabel geschmack = new JLabel("Sorten:");
@@ -81,39 +79,23 @@ public class GUI {
 		kunde.add(ueberschrift);
 		kunde.add(geschmack);
 		kunde.add(groesse);
-		buttons.pizzaGeschmack(kunde);
-		buttons.addBestellButton(kunde);
-		buttons.pizzaSize(kunde);
-		buttons.addTextFieldKunde(kunde);
+		
+		//Kein guter Programmierstill, hätte man auch alles im Konstruktor von Buttons machen koennen....
+		buttons.pizzaGeschmack();
+		buttons.addBestellButton();
+		buttons.pizzaSize();
+		buttons.addTextFieldKunde();
 		buttons.extraToppings();
 		buttons.addAbholButton();
-		
+		buttons.addBestellungBeastigenButton();
 	}
 	
-	private void PanelKundeMitte(){
-//		kundePanelMitte = new JPanel( new BorderLayout(0,20));
-//		
-//		buttons.pizzaGeschmack(kundePanelMitte);
-//		return kundePanelMitte;	
-		
-	}
-	private void PanelKundeUnten(){
-//		JTextField adresse = new JTextField(20);
-//		JLabel adresseLabel = new JLabel("Adresse");
-//		
-//		adresse.setBounds(240, 200, 200, 20);
-//		adresseLabel.setBounds(190,200,200,20);
-//		kunde.add(adresseLabel);
-//		kunde.add(adresse);
-//		
-		
-	}
+	
 	private void PanelKoch(){
-	
-
-	
-	
+		kochbuttons.makeFrame();
+		
 	}
 	
 }
+
 
