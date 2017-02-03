@@ -24,9 +24,27 @@ public class BestellProdukt implements Serializable{
     private int anzahl = 1;
     private final IDataFactory dataFactory;
 
-    public BestellProdukt(IDataFactory datafactory, int produktId) {
+    public BestellProdukt(IDataFactory datafactory, int produktId, int anzahl) {
         this.dataFactory = datafactory;
         this.produktId = produktId;
+        this.anzahl = anzahl;
+    }
+    
+    public BestellProdukt(IDataFactory datafactory, int produktId, int anzahl, Groesse groesse, List<Topping> toppingList) {
+        this.dataFactory = datafactory;
+        this.produktId = produktId;
+        this.anzahl = anzahl;
+        this.groesse = groesse;
+        this.toppingList = toppingList;
+    }
+    
+    public BestellProdukt(IDataFactory datafactory, int produktId, int andereHaelfteId, int anzahl, Groesse groesse, List<Topping> toppingList) {
+        this.dataFactory = datafactory;
+        this.produktId = produktId;
+        this.andereHaelfteId = andereHaelfteId;
+        this.anzahl = anzahl;
+        this.groesse = groesse;
+        this.toppingList = toppingList;
     }
 
     public int getAufpreis() {
