@@ -42,54 +42,51 @@ public class PizzaService {
 
         if (dataFactory == null) {
             dataFactory = new DataFactory();
+            Produkt produkt = new Produkt();
+            produkt.setName("Salami");
+            produkt.setPreis(5.99);
+            dataFactory.addProdukt(produkt);
+            
+            produkt = new Produkt();
+            produkt.setName("Hawai");
+            produkt.setPreis(6.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Spinat");
+            produkt.setPreis(6.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Diavolo");
+            produkt.setPreis(7.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Quattro Formaggio");
+            produkt.setPreis(7.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Thunfisch");
+            produkt.setPreis(6.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Chicken");
+            produkt.setPreis(6.99);
+            dataFactory.addProdukt(produkt);
+
+            produkt = new Produkt();
+            produkt.setName("Margherita");
+            produkt.setPreis(4.99);
+            dataFactory.addProdukt(produkt);
+            
+            Produkt produkt = new Produkt();
+            produkt.setName("Mediterran");
+            produkt.setPreis(7.99);
+            dataFactory.addProdukt(produkt);
         }
-
-//        Produkt produkt = new Produkt();
-//        produkt.setName("Salami");
-//        produkt.setPreis(5.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Hawai");
-//        produkt.setPreis(6.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Spinat");
-//        produkt.setPreis(6.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Diavolo");
-//        produkt.setPreis(7.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Quattro Formaggio");
-//        produkt.setPreis(7.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Thunfisch");
-//        produkt.setPreis(6.99);
-//        dataFactory.addProdukt(produkt);
-//
-//
-//        produkt = new Produkt();
-//        produkt.setName("Chicken");
-//        produkt.setPreis(6.99);
-//        dataFactory.addProdukt(produkt);
-//
-//        produkt = new Produkt();
-//        produkt.setName("Margherita");
-//        produkt.setPreis(4.99);
-//        dataFactory.addProdukt(produkt);
-//        Produkt produkt = new Produkt();
-//        produkt.setName("Mediterran");
-//        produkt.setPreis(7.99);
-//        dataFactory.addProdukt(produkt);
-        
-
 
         for (Produkt p : dataFactory.getAllProdukte()) {
             System.out.println("Pizzanamw: " + p.getName() + " Preis: " + p.getPreis());
