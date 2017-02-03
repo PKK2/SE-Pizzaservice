@@ -82,7 +82,7 @@ public class PizzaService {
             produkt.setPreis(4.99);
             dataFactory.addProdukt(produkt);
             
-            Produkt produkt = new Produkt();
+            produkt = new Produkt();
             produkt.setName("Mediterran");
             produkt.setPreis(7.99);
             dataFactory.addProdukt(produkt);
