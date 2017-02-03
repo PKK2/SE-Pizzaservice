@@ -85,6 +85,14 @@ public class BestellProdukt implements Serializable{
     public void addTopping(Topping topping) {
         toppingList.add(topping);
     }
+    
+    public String getProduktName() {
+        if(getProduktId() != 0){
+            return dataFactory.getProduktById(getProduktId()).getName();
+        } else {
+            return "";
+        }
+    }
 
     public int getProduktId() {
         return produktId;
