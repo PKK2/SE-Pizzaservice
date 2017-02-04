@@ -15,8 +15,8 @@ public class Buttons   {
 	private ButtonGroup bGHalf, gp;
 	private JRadioButton margherita, thunfisch, salami;
 	private JTextField adresse, telefonnummer, name;
-	private JToggleButton abholen, bestaetigen,bestellButton, deleteExtra, extra;
-	
+	private JToggleButton abholen, bestellButton;
+	private JButton extra, deleteExtra, bestaetigen;
 	/*
 	 * Die Klasse heisst zwar Buttons, soll aber dient den Aufbau und hilft bei der Logik der Pizzabestellung
 	 * 
@@ -266,11 +266,11 @@ public class Buttons   {
 	}
 	
 	public void extraToppings(){
-		extra = new JToggleButton("Toppings");
+		extra = new JButton("Toppings");
 		extra.setToolTipText("Klein 2, Mittel 3 und Gross 5 Toppings umsonst, danach kostet jedes Topping extra");
 		extra.addActionListener(buttonListener);
 		extra.setBounds(100, 450-80, 120, 30);
-		deleteExtra = new JToggleButton("Loeschen T");
+		deleteExtra = new JButton("Loeschen T");
 		deleteExtra.addActionListener(buttonListener);
 		deleteExtra.setBounds(100, 410-80, 120, 30);
 		 anzahl = new JLabel("0");
@@ -295,7 +295,7 @@ public class Buttons   {
 	
 	
 	public void addBestellungBeastigenButton(){
-		bestaetigen = new JToggleButton("Bestellung bestaetigen");
+		bestaetigen = new JButton("Bestellung bestaetigen");
 		bestaetigen.setBounds(450,500,200,30);
 		bestaetigen.setBackground(Color.yellow);
 		bestaetigen.addActionListener(buttonListener);
