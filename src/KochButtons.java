@@ -45,7 +45,7 @@ public class KochButtons implements ActionListener {
 		pizzen.addActionListener(this);
 		
 		
-//		pizzen.addItem(new TestKlasse("Käse"));
+//		pizzen.addItem(new TestKlasse("KÃ¤se"));
 //		pizzen.addItem(new TestKlasse("Knecht"));
 //		addBestellung(new TestKlasse("lol"));
 	}
@@ -68,7 +68,7 @@ public class KochButtons implements ActionListener {
 	public void getStatus() {
 		//TODO
 	}
-
+	//Die Methodenaufrufe sind nur aus Testzwecken, natuerlich machen die hier noch keinen Sinn...
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() instanceof JComboBox){
