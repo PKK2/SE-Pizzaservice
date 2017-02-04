@@ -18,7 +18,7 @@ public class GUI {
 		 buttons = new Buttons(kunde);
 		 kochbuttons = new KochButtons(koch);
 		 // TODO
-		 pizzaSymbol = new ImageIcon("C:/Users/Nado/workspace/Pizzaservice/src/resources/pizza.png");
+		 pizzaSymbol = new ImageIcon("pizza.png");
 		 
 		 createKundeFrame();
 		 createKochFrame();
