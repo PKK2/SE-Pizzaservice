@@ -84,7 +84,7 @@ public class Buttons   {
 		margherita.setBackground(Color.red);
 		thunfisch.setBackground(Color.red);
 		salami.setBackground(Color.red);
-		//theoretisch noch margherita.setActionCommant("LOL") ---> ermˆglicht abfrage bei BListener auf LOL
+		//theoretisch noch margherita.setActionCommant("LOL") ---> erm√∂glicht abfrage bei BListener auf LOL
 		margherita.addActionListener(buttonListener);
 		thunfisch.addActionListener(buttonListener);
 		salami.addActionListener(buttonListener);
@@ -156,13 +156,7 @@ public class Buttons   {
 		kunde.add(Telefonnummer);
 	}
 	
-	public void addWeitereBestellung () {
-		weitereBestellung = new JButton("Weitere Bestellung hinzufuegen");
-		weitereBestellung.setBounds(430, 450, 250, 20);
-		weitereBestellung.setBackground(Color.yellow);
-		weitereBestellung.addActionListener(buttonListener);
-		kunde.add(weitereBestellung);
-	}
+
 	
 	public void setAllNotSelected(){
 		gp.clearSelection();
