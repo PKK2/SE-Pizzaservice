@@ -28,64 +28,15 @@ public class PizzaService {
             fis = new FileInputStream(FILENAME);
             ObjectInputStream o = new ObjectInputStream(fis);
             dataFactory = (DataFactory) o.readObject();
+            fis.close();
         } catch (IOException e) {
-            System.err.println(e);
+            //System.err.println(e);
         } catch (ClassNotFoundException e) {
             System.err.println(e);
-        } finally {
-            try {
-                fis.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
-
-        if (dataFactory == null) {
-            dataFactory = new DataFactory();
-            Produkt produkt = new Produkt();
-            produkt.setName("Salami");
-            produkt.setPreis(5.99);
-            dataFactory.addProdukt(produkt);
-            
-            produkt = new Produkt();
-            produkt.setName("Hawai");
-            produkt.setPreis(6.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Spinat");
-            produkt.setPreis(6.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Diavolo");
-            produkt.setPreis(7.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Quattro Formaggio");
-            produkt.setPreis(7.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Thunfisch");
-            produkt.setPreis(6.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Chicken");
-            produkt.setPreis(6.99);
-            dataFactory.addProdukt(produkt);
-
-            produkt = new Produkt();
-            produkt.setName("Margherita");
-            produkt.setPreis(4.99);
-            dataFactory.addProdukt(produkt);
-            
-            produkt = new Produkt();
-            produkt.setName("Mediterran");
-            produkt.setPreis(7.99);
-            dataFactory.addProdukt(produkt);
+        
+        if(dataFactory == null){
+            dataFactory = getDFTestData();
         }
 
         for (Produkt p : dataFactory.getAllProdukte()) {
@@ -98,15 +49,60 @@ public class PizzaService {
             fos = new FileOutputStream(FILENAME);
             ObjectOutputStream o = new ObjectOutputStream(fos);
             o.writeObject(dataFactory);
+            fos.close();
         } catch (IOException e) {
             System.err.println(e);
-        } finally {
-            try {
-                fos.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
+    }
+    
+    private static DataFactory getDFTestData() {
+        DataFactory dataFactory = new DataFactory();
+        Produkt produkt = new Produkt();
+        produkt.setName("Salami");
+        produkt.setPreis(5.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Hawai");
+        produkt.setPreis(6.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Spinat");
+        produkt.setPreis(6.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Diavolo");
+        produkt.setPreis(7.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Quattro Formaggio");
+        produkt.setPreis(7.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Thunfisch");
+        produkt.setPreis(6.99);
+        dataFactory.addProdukt(produkt);
+
+
+        produkt = new Produkt();
+        produkt.setName("Chicken");
+        produkt.setPreis(6.99);
+        dataFactory.addProdukt(produkt);
+
+        produkt = new Produkt();
+        produkt.setName("Margherita");
+        produkt.setPreis(4.99);
+        dataFactory.addProdukt(produkt);
+        
+        produkt.setName("Mediterran");
+        produkt.setPreis(7.99);
+        dataFactory.addProdukt(produkt);
+        
+        return dataFactory;
     }
 
 }
