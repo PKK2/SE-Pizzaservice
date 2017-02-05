@@ -75,9 +75,9 @@ public class GUI {
 		kunde.add(geschmack);
 		kunde.add(groesse);
 		
-		//Kein guter Programmierstill, h‰tte man auch alles im Konstruktor von Buttons machen koennen.... siehe PanelKoch()
+		//Kein guter Programmierstill, h√§tte man auch alles im Konstruktor von Buttons machen koennen.... siehe PanelKoch()
 		buttons.pizzaGeschmack();
-		buttons.addBestellButton();
+		
 		buttons.pizzaSize();
 		buttons.addTextFieldKunde();
 		buttons.extraToppings();
