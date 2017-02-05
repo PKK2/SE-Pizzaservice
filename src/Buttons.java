@@ -84,7 +84,7 @@ public class Buttons   {
 		margherita.setBackground(Color.red);
 		thunfisch.setBackground(Color.red);
 		salami.setBackground(Color.red);
-		//theoretisch noch margherita.setActionCommant("LOL") ---> ermˆglicht abfrage bei BListener auf LOL
+		//theoretisch noch margherita.setActionCommant("LOL") ---> erm√∂glicht abfrage bei BListener auf LOL
 		margherita.addActionListener(buttonListener);
 		thunfisch.addActionListener(buttonListener);
 		salami.addActionListener(buttonListener);
@@ -116,25 +116,7 @@ public class Buttons   {
 	
 	}
 	
-	public void addBestellButton() {
-//		 bestellButton = new JToggleButton("Bestellen");
-//		bestellButton.setToolTipText("Falls Sie bestellen moechten, bitte vorher Button bestaetigen");
-//		bestellButton.setBounds(500, 20, 100, 50);
-//		bestellButton.setForeground(Color.black);
-//		bestellButton.setBackground(Color.yellow);
-//		kunde.add(bestellButton);
-		
-	}
-	
-//	public boolean bestellButtonisSelected() {
-//		if(bestellButton.isSelected() == true){
-//			return true;
-//			
-//		}
-//		else{
-//			return false;
-//		}
-//	}
+
 	public boolean bestellungAbholen(){
 		if(abholen.isSelected()){
 			return true;
