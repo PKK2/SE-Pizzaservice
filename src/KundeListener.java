@@ -88,7 +88,7 @@ public class KundeListener implements ActionListener, ChangeListener {
 	}	
 
 	public void mehrereBestellung(){
-		//Bestell Button muss besteatigt sein
+		
 		
 			//Wenn weder Sorte noch Groesse gewaehlt wurde
 			if(buttons.isSelectecGeschmack() !=0 && buttons.isSelectedSize() !=0){
@@ -96,8 +96,6 @@ public class KundeListener implements ActionListener, ChangeListener {
 				groesse = buttons.isSelectecGeschmack();
 				andereHealfteId = buttons.isSelectedHalf();
 				addToppings(buttons.getExtraToppingAnzahl());
-//				System.out.println(buttons.getExtraToppingAnzahl());
-//				System.out.println(toppingList.size());
 				if(andereHealfteId != 0 && andereHealfteId != produktId){
 					addPizza(new BestellProdukt(datafactory, produktId,andereHealfteId, ANZAHL, pizzaGroesse(groesse), getToppings() ));
 					bestellVorgang();
