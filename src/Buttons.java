@@ -1,68 +1,44 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 
 
 public class Buttons   {
 	private JLabel halfHalf, anzahl;
 	private int tAnzahl= 0;
-	private JPanel button;
-	private BListener buttonListener;
+	private KundeListener buttonListener;
 	private JFrame kunde;
-	private Boolean half = false;
+	private Boolean half = false, extraToppings = false;
 	private JRadioButton  ma, sa ,th, klein, mittel,gross;
-	private ButtonGroup bGHalf;
-	private JSlider toppings;
+	private ButtonGroup bGHalf, gp, bp ;
 	private JRadioButton margherita, thunfisch, salami;
 	private JTextField adresse, telefonnummer, name;
-	private JToggleButton abholen;
-	public Buttons (JFrame kunde){
+	private JToggleButton abholen, bestellButton;
+	private JButton extra, deleteExtra, bestaetigen, weitereBestellung;
+	private IDataFactory datafactory;
+	
+	
+	public Buttons (IDataFactory datafactory, JFrame kunde){
 		this.kunde = kunde;
-		buttonListener = new BListener(this,kunde);
-		button = new JPanel();
-		button.setLayout(null);
+		this.datafactory = datafactory;
+		buttonListener = new KundeListener(datafactory,this,kunde);
 		JLabel toppLabel = new JLabel("Topping Anzahl:");
 		toppLabel.setBounds(100,200,100,100);
 		kunde.add(toppLabel);
 		
 	}
 	
-	public void addSlider(int i) {
-		//toppings = new JSlider(0,5);
-		if(i == 2){
-			toppings = new JSlider(0,2);
-		}
-		else if( i == 3){
-			toppings = new JSlider(0,3);
-		}
-		else{
-			toppings = new JSlider(0,5);
-		}
+
+	public void pizzaSize(){
 		
-		toppings.setBounds(250, 235, 140, 50);
-		toppings.setMajorTickSpacing(1);
-		toppings.setMinorTickSpacing(1);
-		toppings.setPaintLabels(true);
-		toppings.setPaintLabels(true);
-		toppings.setFont(new Font(null,Font.BOLD,10));
-		toppings.setBackground(Color.red);
-		toppings.addChangeListener(buttonListener);
-		toppings.setValue(0);
-		kunde.add(toppings);
-		
-	}
-	public void pizzaSize(JFrame kunde){
-		
-		ButtonGroup gp = new ButtonGroup();
+		gp = new ButtonGroup();
 		klein = new JRadioButton("Klein");
 		mittel = new JRadioButton("Mittel");
 		gross  = new JRadioButton("Gross") ;
 		gp.add(klein);
 		gp.add(mittel);
 		gp.add(gross);
-	//	klein.setActionCommand("Klein");
 		klein.setBackground(Color.red);
 		mittel.setBackground(Color.red);
 		gross.setBackground(Color.red);
@@ -79,20 +55,36 @@ public class Buttons   {
 		kunde.add(gross);
 	}
 	
-	public void pizzaGeschmack(JFrame kunde){
+	public int isSelectedSize(){
+		if(klein.isSelected()){
+			return 1;
+		}
+		else if(mittel.isSelected()){
+			return 2;
+		}
+		else if(gross.isSelected()){
+			return 3;
+		}
+		else{
+			
+		return 0;
 		
-		ButtonGroup gp = new ButtonGroup();
+		}
+	}
+	public void pizzaGeschmack(){
+		
+		bp = new ButtonGroup();
 		margherita = new JRadioButton("Margherita");
 		thunfisch = new JRadioButton("Thunfisch");
-		salami  = new JRadioButton("Samali") ;
-		gp.add(margherita);
-		gp.add(thunfisch);
-		gp.add(salami);
+		salami  = new JRadioButton("Salami") ;
+		bp.add(margherita);
+		bp.add(thunfisch);
+		bp.add(salami);
 
 		margherita.setBackground(Color.red);
 		thunfisch.setBackground(Color.red);
 		salami.setBackground(Color.red);
-		//theoretisch noch margherita.setActionCommant("LOL") ---> ermöglicht abfrage bei BListener auf LOL
+		//theoretisch noch margherita.setActionCommant("LOL") ---> ermÃ¶glicht abfrage bei BListener auf LOL
 		margherita.addActionListener(buttonListener);
 		thunfisch.addActionListener(buttonListener);
 		salami.addActionListener(buttonListener);
@@ -106,17 +98,33 @@ public class Buttons   {
 		
 		
 	}
-	//ADDET AUCH DEN TOPPING BUTTON
-	public void addBestellButton(JFrame kunde) {
-		JToggleButton bestellButton = new JToggleButton("Bestellen");
-		bestellButton.setToolTipText("Falls Sie bestellen moechten, bitte vorher Button bestaetigen");
-		bestellButton.setBounds(500, 20, 100, 50);
-		bestellButton.setForeground(Color.black);
-		bestellButton.setBackground(Color.yellow);
-		kunde.add(bestellButton);
-		
+	
+	
+	public int isSelectecGeschmack(){
+		if(margherita.isSelected()){
+			return 1;
+		}
+		else if (thunfisch.isSelected()){
+			return 2;
+		}
+		else if(salami.isSelected()){
+			return 3;
+		}
+		else{
+			return 0;
+		}
+	
 	}
 	
+
+	public boolean bestellungAbholen(){
+		if(abholen.isSelected()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public JToggleButton addToppingButton() {
 		JToggleButton toppingButton = new JToggleButton("Toppings");
 		toppingButton.setBounds(500, 160, 100, 50);
@@ -124,7 +132,7 @@ public class Buttons   {
 		return toppingButton;
 	}
 	
-	public void addTextFieldKunde(JFrame kunde) {
+	public void addTextFieldKunde() {
 		JLabel Adresse = new JLabel("Adresse:");
 		JLabel Telefonnummer = new JLabel("Telefon:");
 		JLabel Name = new JLabel("Name:");
@@ -145,26 +153,52 @@ public class Buttons   {
 		kunde.add(Name);
 		kunde.add(Telefonnummer);
 	}
+	
+	public void addWeitereBestellung () {
+		weitereBestellung = new JButton("Weitere Bestellung hinzufuegen");
+		weitereBestellung.setBounds(430, 450, 250, 20);
+		weitereBestellung.setBackground(Color.yellow);
+		weitereBestellung.addActionListener(buttonListener);
+		kunde.add(weitereBestellung);
+	}
+	
+	public void setAllNotSelected(){
+		gp.clearSelection();
+		if(bGHalf != null){
+			bGHalf.clearSelection();	
+		}
+		
+		bp.clearSelection();
+	}
 
-
+	public void setEverythingNotSelected(){
+		setAllNotSelected();
+		adresse.setText("");
+		telefonnummer.setText("");
+		name.setText("");
+		abholen.setSelected(false);
+//		bestellButton.setSelected(false);
+		tAnzahl = 0;
+		anzahl.setText("0");
+		
+	}
 	public void creatHalfHalf(){
 		if(half == false){
 		halfHalf = new JLabel("Zusatzoption: Belegung der anderen Healfte");
 		halfHalf.setBounds(180,85,300,100);
 		half = true;
 		kunde.add(halfHalf);
-		JToggleButton loeschen = new JToggleButton("Loeschen");
+		JButton loeschen = new JButton("Loeschen");
 		loeschen.setBounds(130, 150, 100, 50);
 		loeschen.setBackground(Color.yellow);
 		loeschen.addActionListener(buttonListener);
 		bGHalf = new ButtonGroup();
 		ma = new JRadioButton("Margherita");
 		th = new JRadioButton("Thunfisch");
-		sa  = new JRadioButton("Samali") ;
-//		ma.setActionCommand("ma");
-//		th.setActionCommand("th");
-//		sa.setActionCommand("sa");
-//		
+		sa  = new JRadioButton("Salami") ;
+		ma.setActionCommand("ma");
+		sa.setActionCommand("sa");
+		th.setActionCommand("th");
 		
 		
 		bGHalf.add(ma);
@@ -174,7 +208,6 @@ public class Buttons   {
 		ma.setBackground(Color.red);
 		th.setBackground(Color.red);
 		sa.setBackground(Color.red);
-		//theoretisch noch margherita.setActionCommant("LOL") ---> ermöglicht abfrage bei BListener auf LOL
 		ma.addActionListener(buttonListener);
 		th.addActionListener(buttonListener);
 		sa.addActionListener(buttonListener);
@@ -199,7 +232,28 @@ public class Buttons   {
 		}
 		
 	}
-	
+	public int isSelectedHalf() {
+		if(ma!=null && th!=null && sa != null){
+			if(ma.isSelected() == true){
+				return 1;
+			}
+			else if(th.isSelected() == true){
+				return 2;
+			}
+			else if(sa.isSelected() == true){
+				return 3;	
+			}
+			else{
+				return 0;
+			}
+		
+		}
+		else{
+			return 0;
+		}
+			
+			
+	}
 	public void deleteHalfHalf(){
 		if(half == true) {
 			kunde.remove(halfHalf);
@@ -220,10 +274,11 @@ public class Buttons   {
 	}
 	
 	public void extraToppings(){
-		JToggleButton extra = new JToggleButton("Extra Toppings");
+		extra = new JButton("Toppings");
+		extra.setToolTipText("Klein 2, Mittel 3 und Gross 5 Toppings umsonst, danach kostet jedes Topping extra");
 		extra.addActionListener(buttonListener);
 		extra.setBounds(100, 450-80, 120, 30);
-		JToggleButton deleteExtra = new JToggleButton("Loeschen T");
+		deleteExtra = new JButton("Loeschen T");
 		deleteExtra.addActionListener(buttonListener);
 		deleteExtra.setBounds(100, 410-80, 120, 30);
 		 anzahl = new JLabel("0");
@@ -231,9 +286,39 @@ public class Buttons   {
 		kunde.add(extra);
 		kunde.add(deleteExtra);
 		kunde.add(anzahl);
+		extraToppings = true;
 		
 	}
 	
+	public boolean getExtrastate(){
+		return extraToppings;
+	}
+	public void deleteExtra(){
+		kunde.remove(extra);
+		kunde.remove(deleteExtra);
+		kunde.remove(anzahl);
+		kunde.repaint();
+		extraToppings = false;
+	}
+	
+	
+	public void addBestellungBeastigenButton(){
+		bestaetigen = new JButton("Bestellung bestaetigen");
+		bestaetigen.setBounds(450,500,200,30);
+		bestaetigen.setBackground(Color.yellow);
+		bestaetigen.addActionListener(buttonListener);
+		bestaetigen.setToolTipText("Bestellung bitte bestaetigen");
+		kunde.add(bestaetigen);
+		
+	}
+	public boolean beastigenButtonIsSelected(){
+		if(bestaetigen.isSelected()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public void addAbholButton(){
 		abholen = new JToggleButton("Bestellung abholen?");
 		abholen.setBounds(60,520, 150, 30);
@@ -245,6 +330,10 @@ public class Buttons   {
 	public void erhoeheToppings(){
 		tAnzahl ++;
 		anzahl.setText(Integer.toString(tAnzahl));
+	}
+	
+	public int getExtraToppingAnzahl(){
+		return tAnzahl;
 	}
 	public void loescheToppings() {
 		anzahl.setText("0");
