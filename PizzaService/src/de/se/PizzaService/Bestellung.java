@@ -124,4 +124,25 @@ public class Bestellung implements IBestellungKunde, IBestellungKoch, Serializab
     public void delBestellung(){
         datafactory.deleteBestellung(getId());
     }
+    
+     public String toString(){
+        Calendar c = new GregorianCalendar();
+        c.setTime(getBestellzeit());
+        BestellProdukt bProdukt = bestellList.get(0);
+        
+        String pName = "";
+        if(bProdukt.getAndereHaelfteId() == 0){
+            pName = bProdukt.getProduktName();
+        } else {
+            pName = bProdukt.getProduktName() + "/" + datafactory.getProduktById(bProdukt.getAndereHaelfteId()).getName();
+        }
+                
+        String s = c.get(Calendar.HOUR_OF_DAY) + ":" 
+                + c.get(Calendar.MINUTE)
+                + " [" + getBestellstatus() + "] "
+                + pName +", "
+                + bProdukt.getGroesse() + ", "
+                + bProdukt.getToppingList().size();
+        return s;
+    }
 }
