@@ -6,18 +6,19 @@ import javax.swing.*;
 
 
 public class KochButtons implements ActionListener {
-	JFrame koch;
-	JComboBox <TestKlasse>pizzen; // JComboBox <BestellProdukt>pizzen;
-	Bestellung bestellung;
-	TestKlasse help;
-	JButton backend, fertig;
-	JLabel ueberschrift;
+	private JFrame koch;
+	private static JComboBox <Bestellung>pizzen; // JComboBox <BestellProdukt>pizzen;
+	private Bestellung help;
+	private JButton backend, fertig;
+	private JLabel ueberschrift, Preis;
 	final String BACKEND = "backend";
 	final String FERTIG  =  "fertig";
+	
 	public KochButtons(JFrame koch){
 		this.koch = koch; 
-		
-		
+	}
+	
+	public KochButtons() {
 		
 	}
 	
@@ -28,13 +29,14 @@ public class KochButtons implements ActionListener {
 		fertig = new JButton(FERTIG);
 		backend.setBounds(350, 250, 100, 50);
 		fertig.setBounds(450, 250, 100, 50);
-		ueberschrift.setBounds(240, 10, 200, 60);
-		pizzen = new JComboBox<TestKlasse>();
+		ueberschrift.setBounds(250, 0, 200, 60);
+		pizzen = new JComboBox<Bestellung>();
 		pizzen.setBounds(100, 250, 250, 50);
-		 // pizzen.addItem(new Bestellung());
-		addBestellung(new TestKlasse("HaltdeineFresse"));
+		Preis = new JLabel("Preis: ");
+		Preis.setFont(new Font("",Font.BOLD,20));
+		Preis.setBounds(370, 350, 200, 20);
 		
-		
+		koch.add(Preis);
 		koch.add(pizzen);
 		koch.add(backend);
 		koch.add(fertig);
@@ -45,61 +47,79 @@ public class KochButtons implements ActionListener {
 		pizzen.addActionListener(this);
 		
 		
-//		pizzen.addItem(new TestKlasse("Käse"));
-//		pizzen.addItem(new TestKlasse("Knecht"));
-//		addBestellung(new TestKlasse("lol"));
 	}
 		
 	
 	
-	public void addBestellung(TestKlasse Pizza) {
+	public static void addBestellung(Bestellung Pizza) {
 		pizzen.addItem(Pizza);
-		koch.repaint();
 	}
 	
 	public void deleteBestellung() {
 		
+		if(getSelectedItem() != null)
+		{
+			 pizzen.removeItemAt(pizzen.getSelectedIndex());
+			 Preis.setText("Preis: ");
+			 koch.repaint();
+		}
+		else{
+				
+			}
 	}
 	
-	public void setStatus() {
-		//TODO
-	}
+
+	public void statusBackend(){
+		
+		if(getSelectedItem() != null){
+			getSelectedItem().setBestellstatus(Bestellung.Bestellstatus.BACKEND);
 	
-	public void getStatus() {
-		//TODO
+			koch.repaint();
+		}
+		else{
+			
+		} 
 	}
-	//Die Methodenaufrufe sind nur aus Testzwecken, natuerlich machen die hier noch keinen Sinn...
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if(e.getSource() instanceof JComboBox){
 			JComboBox cb = (JComboBox)e.getSource();
-			TestKlasse haha =(TestKlasse)cb.getSelectedItem();
-			setSelectedItem(haha);
-			System.out.println(haha.getName().equals("lol"));
+			Bestellung haha =(Bestellung)cb.getSelectedItem();
+			 setSelectedItem(haha);
+			
+			 if(getSelectedItem() != null){
+			 double d = haha.getBestellList().get(0).calcPreis();
+			preis(d);
+			}
+			else{
+				
+			}
 		}
 		else{
 			if(e.getActionCommand().equals("fertig")){
-				//TODO entfernen
-				addBestellung(new TestKlasse("halllooooo"));}
-				else{
-					System.out.println("lolllllll");
-				}
+				deleteBestellung();
+					}
+			else if(e.getActionCommand().equals("backend")){
+				statusBackend();
+			}
 			
 		}
 	
 		
 		
-		
+}
 	
-		
-	}
 	
-	public void setSelectedItem(TestKlasse help){
+	public void preis(double d) {
+		Preis.setText("Preis: " + Double.toString(d));
+		}
+	public void setSelectedItem(Bestellung help){
 		this.help=help;
-		System.out.println("wasgehtab");
+		
 		
 	}
-	public TestKlasse getSelectedItem(){
+	public Bestellung getSelectedItem(){
 		
 		return help;
 	}
