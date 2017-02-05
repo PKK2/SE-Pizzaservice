@@ -39,9 +39,9 @@ public class PizzaService {
             dataFactory = getDFTestData();
         }
 
-        for (Produkt p : dataFactory.getAllProdukte()) {
-            System.out.println("Pizzaname: " + p.getName() + " Preis: " + p.getPreis());
-        }
+      //  for (Produkt p : dataFactory.getAllProdukte()) {
+      //      System.out.println("Pizzaname: " + p.getName() + " Preis: " + p.getPreis());
+      //  }
 
         //TODO application Logic, that uses variable dataFactory via IDataFactory
         OutputStream fos = null;
@@ -58,28 +58,8 @@ public class PizzaService {
     private static DataFactory getDFTestData() {
         DataFactory dataFactory = new DataFactory();
         Produkt produkt = new Produkt();
-        produkt.setName("Salami");
+        produkt.setName("Margherita");
         produkt.setPreis(5.99);
-        dataFactory.addProdukt(produkt);
-
-        produkt = new Produkt();
-        produkt.setName("Hawai");
-        produkt.setPreis(6.99);
-        dataFactory.addProdukt(produkt);
-
-        produkt = new Produkt();
-        produkt.setName("Spinat");
-        produkt.setPreis(6.99);
-        dataFactory.addProdukt(produkt);
-
-        produkt = new Produkt();
-        produkt.setName("Diavolo");
-        produkt.setPreis(7.99);
-        dataFactory.addProdukt(produkt);
-
-        produkt = new Produkt();
-        produkt.setName("Quattro Formaggio");
-        produkt.setPreis(7.99);
         dataFactory.addProdukt(produkt);
 
         produkt = new Produkt();
@@ -87,19 +67,9 @@ public class PizzaService {
         produkt.setPreis(6.99);
         dataFactory.addProdukt(produkt);
 
-
         produkt = new Produkt();
-        produkt.setName("Chicken");
+        produkt.setName("Salami");
         produkt.setPreis(6.99);
-        dataFactory.addProdukt(produkt);
-
-        produkt = new Produkt();
-        produkt.setName("Margherita");
-        produkt.setPreis(4.99);
-        dataFactory.addProdukt(produkt);
-        
-        produkt.setName("Mediterran");
-        produkt.setPreis(7.99);
         dataFactory.addProdukt(produkt);
         
         return dataFactory;
